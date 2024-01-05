@@ -1,0 +1,47 @@
+nav {
+    height: 100%;
+    width: 95px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #110f1d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0px;
+  }
+  
+  /* NavLink Styles */
+  nav a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    margin: 11px 0;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    transition: background-color 0.2s;
+    border-radius: 4px;
+  }
+  
+  nav a:hover {
+    color: #ffffff5d;
+    /* background-color: #514caf; */
+  }
+  
+  /* LogoutButton Styles (assuming it's a button) */
+  nav button {
+    width: 85%;
+    background-color: #aa1100;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    margin-top: auto;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  nav button:hover {
+    background-color: #e74c3c;
+  }
