@@ -90,62 +90,70 @@ const Reload = () => {
 
   return (
     <div className="body-reload">
-      <h1>Recarga de Saldo</h1>
-      <label>
-        Site:
-        <select
-          value={selectedSite}
-          onChange={(e) => setSelectedSite(e.target.value)}
-        >
-          {siteOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Valor:
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-      </label>
-      <label>
-        Data:
-        <DatePicker
-          selected={day}
-          onChange={(date) => setDay(date)}
-          dateFormat="dd/MM/yyyy"
-          disabled={!selectedSite || selectedSite === "Escolha seu site"}
-          className="date-picker"
-        />
-      </label>
-      <button onClick={handleReload}>Recarregar</button>
-      <h4>Total: {totalReload()}</h4>
-      <div>
-        <h2>Resumo das Recargas</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Site</th>
-              <th>Valor</th>
-              <th>Data</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {reloadRequests.map((request) => (
-              <tr key={request._id}>
-                <td>{request.site}</td>
-                <td>{request.value}</td>
-                <td>{formatDate(request.day)}</td>
-                <td>{request.status}</td>
+      <h1 className="h1-reload">Reload Requests</h1>
+      <div className="container-reload">
+        <div className="inputs-reloads">
+          <label>
+            Site:
+            <select
+              value={selectedSite}
+              onChange={(e) => setSelectedSite(e.target.value)}
+            >
+              {siteOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Valor:
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              disabled={!selectedSite || selectedSite === "Escolha seu site"}
+            />
+          </label>
+          <label>
+            Data:
+            <DatePicker
+              selected={day}
+              onChange={(date) => setDay(date)}
+              dateFormat="dd/MM/yyyy"
+              disabled={!selectedSite || selectedSite === "Escolha seu site"}
+              className="date-picker"
+            />
+          </label>
+          <button onClick={handleReload}>Recarregar</button>
+        </div>
+        <div className="resumo-reload1">
+          <h2>Resumo das Recargas</h2>
+          <h4>Total: $ {totalReload()}</h4>
+          <div className="resumo-reload">
+            <table>
+            <thead>
+              <tr>
+                <th>Site</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th>Status</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {reloadRequests.map((request) => (
+                <tr key={request._id}>
+                  <td>{request.site}</td>
+                  <td>$ {request.value}</td>
+                  <td>{formatDate(request.day)}</td>
+                  <td>{request.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          </div>
+          
+        </div>
       </div>
     </div>
   );

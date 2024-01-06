@@ -1,8 +1,123 @@
+/* Estilo para o componente Payments */
 .body-payments {
-    background-color: #f4f4f4;
-    margin-left: 80px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  margin-left: 80px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-payments {
+  display: flex;
+  padding: 15px;
+  width: 75%;
+  margin-top: 20px;
+}
+
+.payments-inputs {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin-right: 20px;
+}
+
+.payments-inputs label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.payments-inputs input,
+.payments-inputs button,
+.payments-inputs .date-picker {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.payments-inputs .date-picker {
+  margin-top: 10px;
+}
+
+.payments-inputs button {
+  background-color: #1c1a2f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.payments-inputs button:hover {
+  background-color: #423e6e;
+}
+
+.payments-remumo {
+  flex: 1;
+}
+
+.payments-remumo h2 {
+  color: #000000;
+  margin-top: 20px;
+}
+
+.payments-remumo h4 {
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.payments-resumo2 {
+  flex: 1;
+  max-height: 360px; /* Ajuste conforme necessário */
+  overflow-y: scroll; /* Adiciona barra de rolagem vertical quando necessário */
+  margin-top: 20px;
+  border-spacing: 0; /* Remove espaçamento entre as células da tabela */
+}
+
+.payments-resumo2 table {
+  width: 100%;
+  max-height: 300px; /* Ajuste conforme necessário */
+  overflow-y: scroll; /* Adiciona barra de rolagem vertical quando necessário */
+  margin-top: 20px;
+  border-spacing: 0; /* Remove espaçamento entre as células da tabela */
+}
+
+.payments-resumo2 table th,
+.payments-resumo2 table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  margin: 0;
+}
+
+.payments-resumo2 table th {
+  background-color: #1c1a2f;
+  color: #fff;
+}
+
+.payments-resumo2 table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.payments-resumo2 table tbody tr:hover {
+  background-color: #ddd;
+}
+
+/* Estilizando a barra de rolagem */
+.payments-resumo2::-webkit-scrollbar {
+  width: 12px;
+}
+
+.payments-resumo2::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.payments-resumo2::-webkit-scrollbar-thumb {
+  background-color: #1c1a2f;
+  border-radius: 10px;
+  border: 3px solid #f1f1f1;
+}

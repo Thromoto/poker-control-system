@@ -1,124 +1,170 @@
 .body-control {
-    background-color: #f4f4f4;
-    margin-left: 80px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .container-control {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    width: 95%;
-    /* margin-top: 20px;
-    margin-bottom: 20px; */
-  }
+  background-color: #f4f4f4;
+  margin-left: 80px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .tables-container {
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  .tables-flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Alterado para space-between */
-    margin-top: 20px; /* Adicionado para espaçamento entre os botões e tabelas */
-  }
-  
-  .h2-control {
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .h3-control {
-    color: #333;
-    margin-top: 20px;
-  }
-  
-  /* Estilo para o formulário de adição de relatório */
-  .add-report-form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .add-report-form label {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  .add-report-form select,
-  .add-report-form input,
-  .add-report-form button,
-  .add-report-form .date-picker {
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  
-  .add-report-form .input-row {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .add-report-form input,
-  .add-report-form .date-picker {
-    flex: 1;
-  }
-  
-  .add-report-form button {
-    background-color: #4c81af;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s;
-  }
-  
-  .add-report-form button:hover {
-    background-color: #514caf;
-  }
-  
-  /* Estilo para as tabelas de relatórios */
-  .report-table {
-    width: 100%;
-    margin-top: 20px;
-    overflow-x: auto;
-  }
-  
-  .report-table table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  
-  .report-table th,
-  .report-table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
-  }
-  
-  .report-table th {
-    background-color: #514caf;
-    color: #fff;
-  }
-  
-  .report-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  .report-table tbody tr:hover {
-    background-color: #ddd;
-  }
+.container-control {
+  display: flex;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 95%;
+  align-items: flex-start;
+}
+
+.container-control1 {
+  display: block;
+  width: 350px;
+}
+
+.container-control2 {
+  display: block;
+  width: 100%;
+}
+
+.tables-container {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.tables-container .button-site-control {
+  background-color: #1c1a2f;
+  color: #fff;
+}
+
+.tables-flex-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.h2-control {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.h3-control {
+  color: #333;
+  margin-top: 20px;
+}
+
+.report-site-container {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.table-container {
+  display: block;
+  width: 100%;
+}
+
+.tables-container button {
+  background-color: #1c1a2f;
+}
+
+.tables-flex-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.h2-control {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.h3-control {
+  color: #333;
+  margin-top: 20px;
+}
+
+/* Estilo para o formulário de adição de relatório */
+.add-report-form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-report-form label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.add-report-form select,
+.add-report-form input,
+.add-report-form button,
+.add-report-form .date-picker {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.add-report-form .input-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.add-report-form input,
+.add-report-form .date-picker {
+  flex: 1;
+}
+
+.add-report-form button {
+  background-color: #1c1a2f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.add-report-form button:hover {
+  background-color: #514caf;
+}
+
+/* Estilo para as tabelas de relatórios */
+.report-table {
+  width: 100%;
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.report-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.report-table th,
+.report-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.report-table th {
+  background-color: #514caf;
+  color: #fff;
+}
+
+.report-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.report-table tbody tr:hover {
+  background-color: #ddd;
+}

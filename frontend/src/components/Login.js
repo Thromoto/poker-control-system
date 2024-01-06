@@ -51,6 +51,12 @@ const Login = () => {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+
   return (
     <div className="body-login">
       <div className="container-login">
@@ -61,6 +67,7 @@ const Login = () => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          onKeyDown={handleKeyPress}
         />
         {invalidEmail && (
           <p className="error-message">E-mail não encontrado ou inválido.</p>
@@ -71,6 +78,7 @@ const Login = () => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={handleKeyPress}
         />
         {invalidPassword && <p className="error-message">Email ou senha inválida.</p>}
         <button className="button-login" onClick={handleLogin}>

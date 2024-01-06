@@ -96,7 +96,7 @@ const Control = () => {
     const uniqueSites = Array.from(
       new Set(reports.map((report) => report.site))
     );
-
+  
     return (
       <div className="tables-flex-container">
         {uniqueSites.map((site, index) => {
@@ -109,46 +109,47 @@ const Control = () => {
               ),
             0
           );
-
+  
           return (
-            <div key={index}>
-              <button
-                onClick={() => setCurrentTable(site)}
-                className={`table-button ${
-                  currentTable === site ? "active" : ""
-                }`}
-              >
-                {`Show ${site}`}
-              </button>
+            <div key={index} className="report-site-container">
+              <div className="button-container-button">
+                <button
+                  onClick={() => setCurrentTable(site)}
+                  className="button-site-control"
+                >
+                  {site}
+                </button>
+              </div>
               <div
                 key={site}
                 style={{ display: currentTable === site ? "block" : "none" }}
+                className="table-container"
               >
                 <h3 className="h3-control">{`Reports for Site ${site} - Total: ${totalResult}`}</h3>
                 <div className="report-table">
                   <table className="table-control">
                     <thead>
                       <tr>
-                        <th>Initial Value</th>
-                        <th>Final Value</th>
-                        <th>Resultado</th>
-                        <th>Day</th>
+                        <th className="report-initial-value">Initial Value</th>
+                        <th className="report-final-value">Final Value</th>
+                        <th className="report-result">Resultado</th>
+                        <th className="report-day">Day</th>
                       </tr>
                     </thead>
                     <tbody>
                       {reports
                         .filter((report) => report.site === site)
                         .map((report) => (
-                          <tr key={report._id}>
-                            <td>{report.initialValue}</td>
-                            <td>{report.finalValue}</td>
-                            <td>
+                          <tr key={report._id} className="report-row">
+                            <td className="report-initial-value">{report.initialValue}</td>
+                            <td className="report-final-value">{report.finalValue}</td>
+                            <td className="report-result">
                               {calculateDifference(
                                 report.initialValue,
                                 report.finalValue
                               )}
                             </td>
-                            <td>{new Date(report.day).toLocaleDateString()}</td>
+                            <td className="report-day">{new Date(report.day).toLocaleDateString()}</td>
                           </tr>
                         ))}
                     </tbody>
@@ -165,64 +166,67 @@ const Control = () => {
   return (
     <div className="body-control">
       <div className="container-control">
-        <h2 className="h2-control">Control Page</h2>
-
-        <h3 className="h3-control">New Report</h3>
-        <div className="add-report-form">
-          <label>
-            Site:
-            <select
-              value={selectedSite}
-              onChange={(e) => setSelectedSite(e.target.value)}
-            >
-              {siteOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Day:
-            <DatePicker
-              selected={day}
-              onChange={(date) => setDay(date)}
-              dateFormat="dd/MM/yyyy"
-              disabled={!selectedSite || selectedSite === "Escolha seu site"}
-              className="date-picker"
-            />
-          </label>
-          <div className="input-row">
+        <div className="container-control1">
+          <h2 className="h2-control">Control Page</h2>
+          <h3 className="h3-control">New Report</h3>
+          <div className="add-report-form">
             <label>
-              Initial Value:
-              <input
-                className="input-control"
-                type="text"
-                value={initialValue}
-                onChange={(e) => setInitialValue(parseFloat(e.target.value))}
-                disabled={
-                  !selectedSite ||
-                  selectedSite === "Escolha seu site" ||
-                  findLastFinalValue() !== null
-                }
-              />
+              Site:
+              <select
+                value={selectedSite}
+                onChange={(e) => setSelectedSite(e.target.value)}
+              >
+                {siteOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
             </label>
             <label>
-              Final Value:
-              <input
-                className="input-control"
-                type="text"
-                value={finalValue}
-                onChange={(e) => setFinalValue(e.target.value)}
+              Day:
+              <DatePicker
+                selected={day}
+                onChange={(date) => setDay(date)}
+                dateFormat="dd/MM/yyyy"
                 disabled={!selectedSite || selectedSite === "Escolha seu site"}
+                className="date-picker"
               />
             </label>
+            <div className="input-row">
+              <label>
+                Initial Value:
+                <input
+                  className="input-control"
+                  type="text"
+                  value={initialValue}
+                  onChange={(e) => setInitialValue(parseFloat(e.target.value))}
+                  disabled={
+                    !selectedSite ||
+                    selectedSite === "Escolha seu site" ||
+                    findLastFinalValue() !== null
+                  }
+                />
+              </label>
+              <label>
+                Final Value:
+                <input
+                  className="input-control"
+                  type="text"
+                  value={finalValue}
+                  onChange={(e) => setFinalValue(e.target.value)}
+                  disabled={
+                    !selectedSite || selectedSite === "Escolha seu site"
+                  }
+                />
+              </label>
+            </div>
+            <button className="button-control" onClick={handleSaveReport}>
+              Save Report
+            </button>
           </div>
-          <button className="button-control" onClick={handleSaveReport}>
-            Save Report
-          </button>
         </div>
-        <div>
+        <div className="container-contro2">
           <div className="tables-container">
             <h3 className="h3-control">Reports</h3>
             {renderTablesBySite()}

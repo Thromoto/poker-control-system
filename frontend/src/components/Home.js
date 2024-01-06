@@ -79,7 +79,7 @@ const Home = () => {
       return (
         <div key={site} className="div-home">
           <h3 className="home-h3">{`Reports for Site ${site}`}</h3>
-          <h4>Total: {totalResult}</h4>
+          <h4>Total: $ {totalResult}</h4>
           <div className="table-home">
             <table>
               <thead>
@@ -93,10 +93,9 @@ const Home = () => {
               <tbody>
                 {siteReports.map((report) => (
                   <tr key={report._id}>
-                    <td>{report.initialValue}</td>
-                    <td>{report.finalValue}</td>
-                    <td>
-                      {calculateDifference(
+                    <td>$ {report.initialValue}</td>
+                    <td>$ {report.finalValue}</td>
+                    <td>$ {calculateDifference(
                         report.initialValue,
                         report.finalValue
                       )}
@@ -217,7 +216,7 @@ const Home = () => {
                   {pendingWithdraws.map((withdraw) => (
                     <tr key={withdraw._id}>
                       <td>{withdraw.site}</td>
-                      <td>{withdraw.value}</td>
+                      <td>$ {withdraw.value}</td>
                       <td>{withdraw.status}</td>
                       <td>{formatDate(withdraw.day)}</td>
                     </tr>
@@ -246,13 +245,12 @@ const Home = () => {
   return (
     <div className="body-home">
       <div className="container-home">
-        <h2 className="h2-home">Olá, {name}!</h2>
-        <h2 className="h2-home">Seus relatórios!</h2>
+        <h2 className="h2-home">Olá, {name}! Aqui estão seus relatórios!</h2>
         {pendingWithdraws}
         <br />
         <br />
         <div>
-          <h3>Withdraw/Reload</h3>
+          <h3 className="home-h3">Withdraw/Reload</h3>
           <table>
             <thead>
               <tr>

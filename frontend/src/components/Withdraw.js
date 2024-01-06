@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "date-fns-tz";
 
-import './Withdraw.css';
+import "./Withdraw.css";
 
 const Withdraw = () => {
   const [withdrawRequests, setWithdrawRequests] = useState([]);
@@ -45,7 +45,9 @@ const Withdraw = () => {
         // Atualizar localmente o status do jogador para "SACADO"
         setWithdrawRequests((prevRequests) =>
           prevRequests.map((request) =>
-            request._id === withdrawId ? { ...request, playerStatus: "SACADO" } : request
+            request._id === withdrawId
+              ? { ...request, playerStatus: "SACADO" }
+              : request
           )
         );
       }
@@ -77,38 +79,44 @@ const Withdraw = () => {
 
   return (
     <div className="body-withdraw">
-      <h2>Player Withdraw Requests</h2>
-      <p>Total: R${totalWithdraw()}</p>
-      <table>
-        <thead>
-          <tr>
-            <th>Site</th>
-            <th>Value</th>
-            <th>Day</th>
-            <th>Status</th>
-            <th>Status (Admin)</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {withdrawRequests.map((request) => (
-            <tr key={request._id}>
-              <td>{request.site}</td>
-              <td>{request.value}</td>
-              <td>{formatDate(request.day)}</td>
-              <td>{request.playerStatus}</td>
-              <td>{request.status}</td>
-              <td>
-                {request.playerStatus === "NÃO SAQUEI" && (
-                  <button onClick={() => handleUpdatePlayerStatus(request._id)}>
-                    Confirm Withdraw
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <h1>Withdraw Requests</h1>
+      <h4>Total: $ {totalWithdraw()}</h4>
+      <div className="container-withdraw">
+        <div className="table-withdraw">
+          <table>
+            <thead>
+              <tr>
+                <th>Site</th>
+                <th>Value</th>
+                <th>Day</th>
+                <th>Status</th>
+                <th>Status (Admin)</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {withdrawRequests.map((request) => (
+                <tr key={request._id}>
+                  <td>{request.site}</td>
+                  <td>$ {request.value}</td>
+                  <td>{formatDate(request.day)}</td>
+                  <td>{request.playerStatus}</td>
+                  <td>{request.status}</td>
+                  <td>
+                    {request.playerStatus === "NÃO SAQUEI" && (
+                      <button
+                        onClick={() => handleUpdatePlayerStatus(request._id)}
+                      >
+                        Confirm Withdraw
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
