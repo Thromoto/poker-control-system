@@ -26,7 +26,7 @@ export default async function getUser(req, res) {
     console.log("Usuário encontrado:", user);
 
     // Retorna as informações específicas do usuário que você deseja
-    res.status(200).json({ name: user.name, email: user.email });
+    res.status(200).json({ name: user.name, email: user.email, sites: user.sites });
   } catch (error) {
     console.error("Erro ao processar solicitação:", error);
 

@@ -4,6 +4,8 @@ import axios from "axios";
 
 import "./ResetPassword.css";
 
+import home from "./home.png";
+
 const ResetPassword = () => {
   const { token } = useParams();
   const [newPassword, setNewPassword] = useState("");
@@ -30,6 +32,9 @@ const ResetPassword = () => {
   return (
     <div className="body-master">
       <div className="body-reset">
+      <Link to="/">
+          <img className="home-icon" src={home} alt="Home" />
+        </Link>
         <h2>Redefinir Senha</h2>
         <input
           type="password"
@@ -44,10 +49,8 @@ const ResetPassword = () => {
           onChange={(e) => setConfirmNewPassword(e.target.value)}
         />
         {!passwordsMatch && <p className="error-message">As senhas não coincidem.</p>}
-        <button onClick={handleResetPassword}>Redefinir Senha</button>
+        <button className="button-reset" onClick={handleResetPassword}>Redefinir Senha</button>
         <br />
-        <br />
-        <Link to="/">Home</Link>
       </div>
     </div>
   );

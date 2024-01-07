@@ -10,6 +10,7 @@ const Home = () => {
   const [pendingWithdraws, setPendingWithdraws] = useState(null);
   const [withdrawRequests, setWithdrawRequests] = useState([]);
   const [reloadRequests, setReloadRequests] = useState([]);
+  const [user, setUser] = useState({});
 
   const fetchUserData = async () => {
     try {
@@ -95,7 +96,9 @@ const Home = () => {
                   <tr key={report._id}>
                     <td>$ {report.initialValue}</td>
                     <td>$ {report.finalValue}</td>
-                    <td>$ {calculateDifference(
+                    <td>
+                      ${" "}
+                      {calculateDifference(
                         report.initialValue,
                         report.finalValue
                       )}
@@ -109,6 +112,64 @@ const Home = () => {
         </div>
       );
     });
+  };
+
+  const fetchUser = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get("http://localhost:3001/api/user", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      const updatedUser = response.data;
+      setUser(updatedUser);
+    } catch (error) {
+      console.error("Error fetching user data", error);
+    }
+  };
+  
+  const caixaSites = () => {
+    if (!user || typeof user !== 'object' || !user.sites) {
+      return null;
+    }
+  
+    const tableHeader = (
+      <thead>
+        <tr>
+          {Object.keys(user.sites).map((site) => (
+            <th key={site}>{site}</th>
+          ))}
+        </tr>
+      </thead>
+    );
+  
+    const tableBody = (
+      <tbody>
+        <tr>
+          {Object.entries(user.sites).map(([siteName, siteValue]) => (
+            <td key={siteName}>
+              {siteValue.lastFinalValue !== undefined
+                ? siteValue.lastFinalValue
+                : "N/A"}
+            </td>
+          ))}
+        </tr>
+      </tbody>
+    );
+  
+    return (
+      <div className="div-home">
+        <h3 className="home-h3">Final Value for Each Site</h3>
+        <div className="table-home">
+          <table>
+            {tableHeader}
+            {tableBody}
+          </table>
+        </div>
+      </div>
+    );
   };
 
   const renderReloadtable = async () => {
@@ -193,11 +254,11 @@ const Home = () => {
           },
         }
       );
-  
+
       const pendingWithdraws = response.data.filter(
         (withdraw) => withdraw.status === "PENDING"
       );
-  
+
       if (pendingWithdraws.length > 0) {
         setPendingWithdraws(
           <div className="div-home">
@@ -240,6 +301,7 @@ const Home = () => {
     fetchPendingWithdraws();
     renderWithdrawtable();
     renderReloadtable();
+    fetchUser();
   }, []);
 
   return (
@@ -248,6 +310,8 @@ const Home = () => {
         <h2 className="h2-home">Olá, {name}! Aqui estão seus relatórios!</h2>
         {pendingWithdraws}
         <br />
+        <br />
+        {user && caixaSites()}
         <br />
         <div>
           <h3 className="home-h3">Withdraw/Reload</h3>
@@ -261,9 +325,9 @@ const Home = () => {
             </thead>
             <tbody>
               <tr>
-                <td>R$ {totalWithdraw()}</td>
-                <td>R$ {totalReload()}</td>
-                <td>R$ {totalWithdraw() - totalReload()}</td>
+                <td>$ {totalWithdraw()}</td>
+                <td>$ {totalReload()}</td>
+                <td>$ {totalWithdraw() - totalReload()}</td>
               </tr>
             </tbody>
           </table>

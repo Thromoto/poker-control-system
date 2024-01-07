@@ -38,6 +38,7 @@ nav {
     padding: 12px;
     margin-top: auto;
     margin-bottom: 10px;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
   }
