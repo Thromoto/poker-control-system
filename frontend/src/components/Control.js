@@ -99,66 +99,57 @@ const Control = () => {
   
     return (
       <div className="tables-flex-container">
-        {uniqueSites.map((site, index) => {
-          const siteReports = reports.filter((report) => report.site === site);
-          const totalResult = siteReports.reduce(
-            (acc, report) =>
-              acc +
-              parseFloat(
-                calculateDifference(report.initialValue, report.finalValue)
-              ),
-            0
-          );
-  
-          return (
-            <div key={index} className="report-site-container">
-              <div className="button-container-button">
-                <button
-                  onClick={() => setCurrentTable(site)}
-                  className="button-site-control"
-                >
+        <div className="select-container">
+          <label>
+            Escolha o site:
+            <select
+              value={currentTable}
+              onChange={(e) => setCurrentTable(e.target.value)}
+              className="select-control"
+            >
+              <option value="">Selecione um site</option>
+              {uniqueSites.map((site) => (
+                <option key={site} value={site}>
                   {site}
-                </button>
-              </div>
-              <div
-                key={site}
-                style={{ display: currentTable === site ? "block" : "none" }}
-                className="table-container"
-              >
-                <h3 className="h3-control">{`Reports for Site ${site} - Total: ${totalResult}`}</h3>
-                <div className="report-table">
-                  <table className="table-control">
-                    <thead>
-                      <tr>
-                        <th className="report-initial-value">Initial Value</th>
-                        <th className="report-final-value">Final Value</th>
-                        <th className="report-result">Resultado</th>
-                        <th className="report-day">Day</th>
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        {currentTable && (
+          <div className="table-container">
+            <h3 className="h3-control">{`Reports for Site ${currentTable}`}</h3>
+            <div className="report-table">
+              <table className="table-control">
+                <thead>
+                  <tr>
+                    <th className="report-initial-value">Initial Value</th>
+                    <th className="report-final-value">Final Value</th>
+                    <th className="report-result">Resultado</th>
+                    <th className="report-day">Day</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reports
+                    .filter((report) => report.site === currentTable)
+                    .map((report) => (
+                      <tr key={report._id} className="report-row">
+                        <td className="report-initial-value">{report.initialValue}</td>
+                        <td className="report-final-value">{report.finalValue}</td>
+                        <td className="report-result">
+                          {calculateDifference(
+                            report.initialValue,
+                            report.finalValue
+                          )}
+                        </td>
+                        <td className="report-day">{new Date(report.day).toLocaleDateString()}</td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {reports
-                        .filter((report) => report.site === site)
-                        .map((report) => (
-                          <tr key={report._id} className="report-row">
-                            <td className="report-initial-value">{report.initialValue}</td>
-                            <td className="report-final-value">{report.finalValue}</td>
-                            <td className="report-result">
-                              {calculateDifference(
-                                report.initialValue,
-                                report.finalValue
-                              )}
-                            </td>
-                            <td className="report-day">{new Date(report.day).toLocaleDateString()}</td>
-                          </tr>
-                        ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+                    ))}
+                </tbody>
+              </table>
             </div>
-          );
-        })}
+          </div>
+        )}
       </div>
     );
   };
