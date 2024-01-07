@@ -85,12 +85,13 @@
 
 /* Estilizando a barra de rolagem */
 .resumo-reload::-webkit-scrollbar {
-  width: 12px;
+  width: 6px;
 }
 
 .resumo-reload::-webkit-scrollbar-thumb {
   background-color: #1c1a2f; /* Cor preta para a barra de rolagem */
   border-radius: 10px;
+  width: 6px;
 }
 
 .resumo-reload::-webkit-scrollbar-track {

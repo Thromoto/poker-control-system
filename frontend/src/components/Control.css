@@ -1,5 +1,5 @@
 .body-control {
-  background-color: #f4f4f4;
+  background-color: #ffffff;
   margin-left: 80px;
   padding: 15px;
   display: flex;
@@ -10,21 +10,20 @@
 .container-control {
   display: flex;
   background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 15px;
-  width: 95%;
+  width: 75%;
   align-items: flex-start;
 }
 
 .container-control1 {
   display: block;
-  width: 350px;
+  width: 500px;
 }
 
-.container-control2 {
-  display: block;
+.container-contro2 {
+  /* display: block; */
   width: 100%;
+  margin: 15px;
 }
 
 .tables-container {
@@ -45,17 +44,17 @@
 }
 
 .h2-control {
-  color: #333;
-  margin-bottom: 20px;
+  color: #000000;
+  margin-bottom: 10px;
 }
 
 .h3-control {
-  color: #333;
-  margin-top: 20px;
+  color: #000000;
+  margin-top: 10px;
 }
 
 .report-site-container {
-  margin-top: 20px;
+  margin-top: 10px;
   width: 100%;
 }
 
@@ -76,13 +75,45 @@
 }
 
 .h2-control {
-  color: #333;
-  margin-bottom: 20px;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.selectt {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .h3-control {
-  color: #333;
+  color: #000000;
+  margin-top: 17px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.report-table {
+  flex: 1;
+  overflow-y: scroll; /* Adiciona barra de rolagem vertical quando necessário */
   margin-top: 20px;
+  border-spacing: 0; /* Remove espaçamento entre as células da tabela */
+  max-height: 350px; /* Ajuste conforme necessário */
+}
+
+/* Estilizando a barra de rolagem */
+.report-table::-webkit-scrollbar {
+  width: 6px;
+}
+
+.report-table::-webkit-scrollbar-thumb {
+  background-color: #1c1a2f; /* Cor preta para a barra de rolagem */
+  border-radius: 10px;
+  width: 6px;
+}
+
+.report-table::-webkit-scrollbar-track {
+  background-color: #ffffff;
 }
 
 /* Estilo para o formulário de adição de relatório */
@@ -100,6 +131,12 @@
   margin-bottom: 10px;
 }
 
+.select-control {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 40px;
+}
+
 .add-report-form select,
 .add-report-form input,
 .add-report-form button,
@@ -109,6 +146,8 @@
   box-sizing: border-box;
   margin-bottom: 10px;
   text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .add-report-form .input-row {
@@ -133,7 +172,7 @@
 }
 
 .add-report-form button:hover {
-  background-color: #514caf;
+  background-color: #423e6e;
 }
 
 /* Estilo para as tabelas de relatórios */
@@ -157,7 +196,7 @@
 }
 
 .report-table th {
-  background-color: #514caf;
+  background-color: #1c1a2f;
   color: #fff;
 }
 

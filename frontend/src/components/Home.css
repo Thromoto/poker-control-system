@@ -71,13 +71,14 @@ tbody tr:hover {
 
 /* Adicione estilos à barra de rolagem */
 .table-home::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 /* Adicione estilos ao indicador (thumb) da barra de rolagem */
 .table-home::-webkit-scrollbar-thumb {
   background-color: #1c1a2f;
   border-radius: 5px;
+  width: 6px;
 }
 
 /* Adicione estilos à pista (track) da barra de rolagem */

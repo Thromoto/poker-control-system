@@ -96,12 +96,12 @@ const Control = () => {
     const uniqueSites = Array.from(
       new Set(reports.map((report) => report.site))
     );
-  
+
     return (
-      <div className="tables-flex-container">
-        <div className="select-container">
+      <div>
+        <div className="selectt">
           <label>
-            Escolha o site:
+            {/* Escolha o site: */}
             <select
               value={currentTable}
               onChange={(e) => setCurrentTable(e.target.value)}
@@ -134,15 +134,21 @@ const Control = () => {
                     .filter((report) => report.site === currentTable)
                     .map((report) => (
                       <tr key={report._id} className="report-row">
-                        <td className="report-initial-value">{report.initialValue}</td>
-                        <td className="report-final-value">{report.finalValue}</td>
+                        <td className="report-initial-value">
+                          $ {report.initialValue}
+                        </td>
+                        <td className="report-final-value">
+                          $ {report.finalValue}
+                        </td>
                         <td className="report-result">
-                          {calculateDifference(
+                          $ {calculateDifference(
                             report.initialValue,
                             report.finalValue
                           )}
                         </td>
-                        <td className="report-day">{new Date(report.day).toLocaleDateString()}</td>
+                        <td className="report-day">
+                          {new Date(report.day).toLocaleDateString()}
+                        </td>
                       </tr>
                     ))}
                 </tbody>
@@ -156,9 +162,9 @@ const Control = () => {
 
   return (
     <div className="body-control">
+      <h1 className="h2-control">Control Page</h1>
       <div className="container-control">
         <div className="container-control1">
-          <h2 className="h2-control">Control Page</h2>
           <h3 className="h3-control">New Report</h3>
           <div className="add-report-form">
             <label>

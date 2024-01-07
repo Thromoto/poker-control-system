@@ -28,12 +28,13 @@
 
 /* Estilizando a barra de rolagem */
 .table-withdraw::-webkit-scrollbar {
-  width: 12px;
+  width: 6px;
 }
 
 .table-withdraw::-webkit-scrollbar-thumb {
   background-color: #1c1a2f; /* Cor preta para a barra de rolagem */
   border-radius: 10px;
+  width: 6px;
 }
 
 .table-withdraw::-webkit-scrollbar-track {
