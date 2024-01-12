@@ -1,8 +1,98 @@
 .body-admin-payments {
-    background-color: #f4f4f4;
-    margin-left: 80px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  background-color: #ffffff;
+  margin-left: 80px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-admin-payments {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px;
+  width: 75%;
+}
+
+.button-admin-payments {
+  background-color: #1c1a2f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 45%;
+  height: 28px;
+  transition: background-color 0.3s;
+}
+
+.button-admin-payments:hover {
+  background-color: #423e6e;
+}
+
+.button-admin-payments1 {
+  background-color: #1c1a2f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 45%;
+  height: 28px;
+  margin-left: 2px;
+  transition: background-color 0.3s;
+}
+
+.button-admin-payments1:hover {
+  background-color: #423e6e;
+}
+
+/* Estilo para as tabelas de relatórios */
+.report-table-payments {
+  width: 100%;
+  margin-top: 0px;
+  overflow-x: auto;
+  flex: 1;
+  overflow-y: scroll; /* Adiciona barra de rolagem vertical quando necessário */
+  border-spacing: 0; /* Remove espaçamento entre as células da tabela */
+  max-height: 500px; /* Ajuste conforme necessário */
+}
+
+.report-table-payments table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.add-report-form .input-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.report-table-payments th,
+.report-table-payments td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.report-table-payments th {
+  background-color: #1c1a2f;
+  color: #fff;
+}
+
+/* Estilizando a barra de rolagem */
+.report-table-payments::-webkit-scrollbar {
+  width: 6px;
+}
+
+.report-table-payments::-webkit-scrollbar-thumb {
+  background-color: #1c1a2f; /* Cor preta para a barra de rolagem */
+  border-radius: 10px;
+  width: 6px;
+}
+
+.report-table-payments::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
