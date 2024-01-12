@@ -4,7 +4,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const AdminTax = () => {
-  const [tax, setTax] = useState("");
   const [taxx, setTaxx] = useState([]);
   const [inicialValue, setInicialValue] = useState("");
   const [finalValue, setFinalValue] = useState("");
@@ -54,7 +53,7 @@ const AdminTax = () => {
         {
           inicialValue,
           finalValue,
-          tax,
+          tax: finalValue - inicialValue,
           player: selectedPlayer,
           day: day.toISOString(),
         },
@@ -67,7 +66,6 @@ const AdminTax = () => {
 
       setInicialValue("");
       setFinalValue("");
-      setTax("");
       setSelectedPlayer("");
 
       fetchTax();
@@ -83,56 +81,24 @@ const AdminTax = () => {
 
   return (
     <div>
-      <h2>Taxas do MetaMask</h2>
+      <h3>Taxas do MetaMask</h3>
       <div className="add-report-form">
-        <label>
-          Jogador:
-          <select
-            value={selectedPlayer}
-            onChange={(e) => setSelectedPlayer(e.target.value)}
-          >
-            <option key="" value="" disabled>
-              Selecione o jogador
-            </option>
-            {playersOptions.map((player, index) => (
-              <option key={index} value={player.id}>
-                {player.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Valor Inicial:
-          <input
-            className="input-control"
-            type="text"
-            value={inicialValue}
-            onChange={(e) => setInicialValue(e.target.value)}
-            disabled={!selectedPlayer || selectedPlayer === "Escolha seu site"}
-          />
-        </label>
-        <label>
-          Valor Final:
-          <input
-            className="input-control"
-            type="text"
-            value={finalValue}
-            onChange={(e) => setFinalValue(e.target.value)}
-            disabled={!selectedPlayer || selectedPlayer === "Escolha seu site"}
-          />
-        </label>
         <div className="input-row">
           <label>
-            Tax:
-            <input
-              className="input-control"
-              type="text"
-              value={tax}
-              onChange={(e) => setTax(e.target.value)}
-              disabled={
-                !selectedPlayer || selectedPlayer === "Escolha seu site"
-              }
-            />
+            Jogador:
+            <select
+              value={selectedPlayer}
+              onChange={(e) => setSelectedPlayer(e.target.value)}
+            >
+              <option key="" value="" disabled>
+                Selecione o jogador
+              </option>
+              {playersOptions.map((player, index) => (
+                <option key={index} value={player.id}>
+                  {player.name}
+                </option>
+              ))}
+            </select>
           </label>
           <label>
             Day:
@@ -147,15 +113,41 @@ const AdminTax = () => {
             />
           </label>
         </div>
+        <div className="input-row">
+          <label>
+            Valor Inicial:
+            <input
+              className="input-control"
+              type="text"
+              value={inicialValue}
+              onChange={(e) => setInicialValue(e.target.value)}
+              disabled={
+                !selectedPlayer || selectedPlayer === "Escolha seu site"
+              }
+            />
+          </label>
+          <label>
+            Valor Final:
+            <input
+              className="input-control"
+              type="text"
+              value={finalValue}
+              onChange={(e) => setFinalValue(e.target.value)}
+              disabled={
+                !selectedPlayer || selectedPlayer === "Escolha seu site"
+              }
+            />
+          </label>
+        </div>
         <button
           className="button-control"
           onClick={handleSaveTax}
-          disabled={!selectedPlayer || selectedPlayer === "Escolha seu site"}
+          disabled={!finalValue}
         >
           Save
         </button>
       </div>
-      <div>
+      <div className="report-table">
         <table className="table-control">
           <thead>
             <tr>
@@ -170,9 +162,9 @@ const AdminTax = () => {
             {taxx.map((taxItem) => (
               <tr key={taxItem._id}>
                 <td>{taxItem.player}</td>
-                <td>{taxItem.inicialValue}</td>
-                <td>{taxItem.finalValue}</td>
-                <td>{taxItem.tax}</td>
+                <td>$ {taxItem.inicialValue}</td>
+                <td>$ {taxItem.finalValue}</td>
+                <td>$ {taxItem.finalValue - taxItem.inicialValue}</td>
                 <td>{new Date(taxItem.day).toLocaleDateString()}</td>
               </tr>
             ))}

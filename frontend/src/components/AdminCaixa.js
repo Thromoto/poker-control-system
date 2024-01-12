@@ -95,71 +95,79 @@ const AdminCaixa = () => {
   return (
     <div className="body-admin-caixa">
       <h1>Banco</h1>
-      <div className="add-report-form">
-        <label>
-          Bank:
-          <select
-            value={selectedBank}
-            onChange={(e) => setSelectedBank(e.target.value)}
-          >
-            {bankOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Day:
-          <DatePicker
-            selected={day}
-            onChange={(date) => setDay(date)}
-            dateFormat="dd/MM/yyyy"
-            disabled={!selectedBank || selectedBank === "Escolha seu site"}
-            className="date-picker"
-          />
-        </label>
-        <div className="input-row">
-          <label>
-            Value:
-            <input
-              className="input-control"
-              type="text"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              disabled={!selectedBank || selectedBank === "Escolha seu site"}
-            />
-          </label>
+      <div className="container-all">
+        <div className="container-bank">
+          <div className="add-report-form">
+            <label>
+              Bank:
+              <select
+                value={selectedBank}
+                onChange={(e) => setSelectedBank(e.target.value)}
+              >
+                {bankOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Day:
+              <DatePicker
+                selected={day}
+                onChange={(date) => setDay(date)}
+                dateFormat="dd/MM/yyyy"
+                disabled={!selectedBank || selectedBank === "Escolha seu site"}
+                className="date-picker"
+              />
+            </label>
+            <div className="input-row">
+              <label>
+                Value:
+                <input
+                  className="input-control"
+                  type="text"
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  disabled={
+                    !selectedBank || selectedBank === "Escolha seu site"
+                  }
+                />
+              </label>
+            </div>
+            <button
+              className="button-control"
+              onClick={handleSaveBank}
+              disabled={!value}
+            >
+              Save
+            </button>
+          </div>
+          <div className="report-table">
+            <table className="table-control">
+              <thead>
+                <tr>
+                  <th>Banco</th>
+                  <th>Saldo</th>
+                  <th>Day</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bank.map((bankItem) => (
+                  <tr key={bankItem._id}>
+                    <td>{bankItem.bankName}</td>
+                    <td>$ {bankItem.value}</td>
+                    <td>{new Date(bankItem.day).toLocaleDateString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-        <button
-          className="button-control"
-          onClick={handleSaveBank}
-          disabled={!selectedBank || selectedBank === "Escolha seu site"}
-        >
-          Save
-        </button>
+        <div className="container-tax">
+          <AdminTax />
+        </div>
       </div>
-      <div>
-        <table className="table-control">
-          <thead>
-            <tr>
-              <th>Banco</th>
-              <th>Saldo</th>
-              <th>Day</th>
-            </tr>
-          </thead>
-          <tbody>
-            {bank.map((bankItem) => (
-              <tr key={bankItem._id}>
-                <td>{bankItem.bankName}</td>
-                <td>{bankItem.value}</td>
-                <td>{new Date(bankItem.day).toLocaleDateString()}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <AdminTax />
     </div>
   );
 };
