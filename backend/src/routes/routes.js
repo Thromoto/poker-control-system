@@ -27,6 +27,7 @@ import {
   postPayments,
 } from "../controllers/PaymentsController.js";
 import {
+  deleteReload,
   getAdminReload,
   getReload,
   getReloadAll,
@@ -93,6 +94,11 @@ routes.put(
   "/api/admin/reload-requests/:requestId",
   authenticateToken,
   updateReload
+);
+routes.delete(
+  "/api/admin/reload-requests/:requestId",
+  authenticateToken,
+  deleteReload
 );
 
 //ReportController

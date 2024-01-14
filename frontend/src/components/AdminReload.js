@@ -61,6 +61,27 @@ const AdminReload = () => {
     }
   };
 
+  const handleDeleteReload = async (requestId) => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(
+        `http://localhost:3001/api/admin/reload-requests/${requestId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      // Remover localmente a solicitação de saque deletada
+      setReloadRequests((prevRequests) =>
+        prevRequests.filter((request) => request._id !== requestId)
+      );
+    } catch (error) {
+      console.error("Error deleting reload request", error);
+    }
+  };
+
   const formatDateTime = (dateTimeString) => {
     const formattedDate = format(
       new Date(dateTimeString),
@@ -119,6 +140,12 @@ const AdminReload = () => {
                         </button>
                       </>
                     )}
+                    <button
+                      className="button-admin-reload"
+                      onClick={() => handleDeleteReload(request._id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}

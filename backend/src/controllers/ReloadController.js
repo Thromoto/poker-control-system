@@ -107,3 +107,25 @@ export async function updateReload(req, res) {
     res.status(500).send("Internal Server Error");
   }
 }
+
+//Rota admin para deletar reload
+export async function deleteReload(req, res) {
+  try {
+    const requestId = req.params.requestId;
+
+    // Verificar se a solicitação existe
+    const reloadRequest = await ReloadRequest.findById(requestId);
+
+    if (!reloadRequest) {
+      return res.status(404).send("Reload request not found");
+    }
+
+    // Excluir a solicitação
+    await ReloadRequest.deleteOne({ _id: requestId });
+
+    res.status(200).send("Reload request deleted successfully");
+  } catch (error) {
+    console.error("Error deleting reload request", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
