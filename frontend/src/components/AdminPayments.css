@@ -63,12 +63,12 @@
   margin-top: 10px;
 }
 
-.add-report-form .input-row {
+/* .add-report-form .input-row {
   display: flex;
   justify-content: space-between;
   width: 100%;
   align-items: flex-end;
-}
+} */
 
 .report-table-payments th,
 .report-table-payments td {
