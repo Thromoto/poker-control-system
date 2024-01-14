@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "react-modal";
 
+import "./AdminPlayersInfo.css";
+
 const AdminPlayersInfo = () => {
   const [players, setPlayers] = useState([]);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
@@ -21,11 +23,14 @@ const AdminPlayersInfo = () => {
         return;
       }
 
-      const response = await axios.get("http://localhost:3001/api/admin/players", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        "http://localhost:3001/api/admin/players",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       setPlayers(response.data);
     } catch (error) {
@@ -92,11 +97,14 @@ const AdminPlayersInfo = () => {
         return;
       }
 
-      await axios.delete(`http://localhost:3001/api/admin/players/${selectedPlayer._id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(
+        `http://localhost:3001/api/admin/players/${selectedPlayer._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       setIsDeleteModalOpen(false);
 
@@ -114,39 +122,52 @@ const AdminPlayersInfo = () => {
 
   return (
     <div className="body-admin-players">
-      <h1 className="body-admin-players-info">Página em construção</h1>
-      <h2>Players Data (Admin)</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Telefone</th>
-            <th>CPF</th>
-            <th>Endereço</th>
-            <th>Nascimento</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {players.map((player) => (
-            <tr key={player._id}>
-              <td>
-                {player.name} {player.lastName}
-              </td>
-              <td>{player.email}</td>
-              <td>{player.phone}</td>
-              <td>{player.cpf}</td>
-              <td>{player.street}</td>
-              <td>{player.birthday}</td>
-              <td>
-                <button onClick={() => handleEdit(player._id)}>Edit</button>
-                <button onClick={() => handleDelete(player._id)}>Delete</button>
-              </td>
+      <h1>Players Infos</h1>
+      <div className="container-players-info">
+        <div className="report-table-info-players">
+          <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Telefone</th>
+              <th>CPF</th>
+              <th>Endereço</th>
+              <th>Nascimento</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {players.map((player) => (
+              <tr key={player._id}>
+                <td>
+                  {player.name} {player.lastName}
+                </td>
+                <td>{player.email}</td>
+                <td>{player.phone}</td>
+                <td>{player.cpf}</td>
+                <td>{player.street}</td>
+                <td>{player.birthday}</td>
+                <td>
+                  <button
+                    className="admin-info-button"
+                    onClick={() => handleEdit(player._id)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="admin-info-button"
+                    onClick={() => handleDelete(player._id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
+      </div>
       {/* Modal de Edição */}
       <Modal
         isOpen={isEditModalOpen}
@@ -245,8 +266,12 @@ const AdminPlayersInfo = () => {
             }
           />
         </label>
-        <button onClick={handleEditSubmit}>Save Changes</button>
-        <button onClick={handleModalClose}>Cancel</button>
+        <button className="admin-info-button-modal" onClick={handleEditSubmit}>
+          Save Changes
+        </button>
+        <button className="admin-info-button-modal" onClick={handleModalClose}>
+          Cancel
+        </button>
       </Modal>
 
       {/* Modal de Exclusão */}
