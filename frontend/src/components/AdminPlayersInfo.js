@@ -126,46 +126,46 @@ const AdminPlayersInfo = () => {
       <div className="container-players-info">
         <div className="report-table-info-players">
           <table>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Email</th>
-              <th>Telefone</th>
-              <th>CPF</th>
-              <th>Endereço</th>
-              <th>Nascimento</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {players.map((player) => (
-              <tr key={player._id}>
-                <td>
-                  {player.name} {player.lastName}
-                </td>
-                <td>{player.email}</td>
-                <td>{player.phone}</td>
-                <td>{player.cpf}</td>
-                <td>{player.street}</td>
-                <td>{player.birthday}</td>
-                <td>
-                  <button
-                    className="admin-info-button"
-                    onClick={() => handleEdit(player._id)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="admin-info-button"
-                    onClick={() => handleDelete(player._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>CPF</th>
+                <th>Endereço</th>
+                <th>Nascimento</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {players.map((player) => (
+                <tr key={player._id}>
+                  <td>
+                    {player.name} {player.lastName}
+                  </td>
+                  <td>{player.email}</td>
+                  <td>{player.phone}</td>
+                  <td>{player.cpf}</td>
+                  <td>{player.street}</td>
+                  <td>{player.birthday}</td>
+                  <td>
+                    <button
+                      className="admin-info-button"
+                      onClick={() => handleEdit(player._id)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="admin-info-button"
+                      onClick={() => handleDelete(player._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
       {/* Modal de Edição */}
