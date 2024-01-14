@@ -9,10 +9,10 @@ function NavBarAdmin() {
       <NavLink to="/admin/adminplayers">Info Players</ NavLink>
       <NavLink to="/admin/admininfos">Info Admins</ NavLink>
       <NavLink to="/admin/adminreport">Reports</NavLink>
-      <NavLink to="/admin/adminreload">Reload</NavLink>
-      <NavLink to="/admin/adminwithdraw">Withdraw</NavLink>
+      <NavLink to="/admin/adminreload">Reloads</NavLink>
+      <NavLink to="/admin/adminwithdraw">Withdraws</NavLink>
       <NavLink to="/admin/adminpayments">Payments</NavLink>
-      <NavLink to="/admin/admincaixa">Banco</NavLink>
+      <NavLink to="/admin/admincaixa">Bank</NavLink>
       <LogoutButton />
     </nav>
   );

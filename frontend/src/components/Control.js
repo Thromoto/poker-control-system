@@ -119,7 +119,7 @@ const Control = () => {
         {currentTable && (
           <div className="table-container">
             <h3 className="h3-control">{`Reports for Site ${currentTable}`}</h3>
-            <div className="report-table">
+            <div className="report-table-control">
               <table className="table-control">
                 <thead>
                   <tr>

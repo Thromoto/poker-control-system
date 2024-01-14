@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+
+import { format } from "date-fns-tz";
 
 import "./AdminCaixa.css";
 import AdminTax from "./AdminTax";
@@ -75,6 +75,7 @@ const AdminCaixa = () => {
 
       setValue("");
       setSelectedBank("");
+      setDay(new Date());
       setBankOptions([
         "Escolha seu banco",
         "Luxon Pay",
@@ -92,9 +93,15 @@ const AdminCaixa = () => {
     fetchBank();
   }, [selectedBank]);
 
+  const formatDate = (date) => {
+    return format(new Date(date), "dd/MM/yyyy HH:mm", {
+      timeZone: "America/Sao_Paulo",
+    });
+  };
+
   return (
     <div className="body-admin-caixa">
-      <h1>Banco</h1>
+      <h1>Bank</h1>
       <div className="container-all">
         <div className="container-bank">
           <div className="add-report-form">
@@ -113,10 +120,10 @@ const AdminCaixa = () => {
             </label>
             <label>
               Day:
-              <DatePicker
-                selected={day}
-                onChange={(date) => setDay(date)}
-                dateFormat="dd/MM/yyyy"
+              <input
+                type="date"
+                value={day.toISOString().split("T")[0]}
+                onChange={(date) => setDay(new Date(date.target.value))}
                 disabled={!selectedBank || selectedBank === "Escolha seu site"}
                 className="date-picker"
               />
@@ -157,7 +164,7 @@ const AdminCaixa = () => {
                   <tr key={bankItem._id}>
                     <td>{bankItem.bankName}</td>
                     <td>$ {bankItem.value}</td>
-                    <td>{new Date(bankItem.day).toLocaleDateString()}</td>
+                    <td>{formatDate(bankItem.day)}</td>
                   </tr>
                 ))}
               </tbody>

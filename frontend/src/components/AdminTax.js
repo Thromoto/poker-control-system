@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { format } from "date-fns-tz";
 
 const AdminTax = () => {
   const [taxx, setTaxx] = useState([]);
@@ -67,6 +66,7 @@ const AdminTax = () => {
       setInicialValue("");
       setFinalValue("");
       setSelectedPlayer("");
+      setDay(new Date());
 
       fetchTax();
     } catch (error) {
@@ -78,6 +78,12 @@ const AdminTax = () => {
     fetchTax();
     findPlayers();
   }, [setSelectedPlayer]);
+
+  const formatDate = (date) => {
+    return format(new Date(date), "dd/MM/yyyy", {
+      timeZone: "America/Sao_Paulo",
+    });
+  };
 
   return (
     <div>
@@ -102,10 +108,10 @@ const AdminTax = () => {
           </label>
           <label>
             Day:
-            <DatePicker
-              selected={day}
-              onChange={(date) => setDay(date)}
-              dateFormat="dd/MM/yyyy"
+            <input
+              type="date"
+              value={day.toISOString().split("T")[0]}
+              onChange={(e) => setDay(new Date(e.target.value))}
               disabled={
                 !selectedPlayer || selectedPlayer === "Escolha seu site"
               }
@@ -165,7 +171,7 @@ const AdminTax = () => {
                 <td>$ {taxItem.inicialValue}</td>
                 <td>$ {taxItem.finalValue}</td>
                 <td>$ {taxItem.finalValue - taxItem.inicialValue}</td>
-                <td>{new Date(taxItem.day).toLocaleDateString()}</td>
+                <td>{formatDate(taxItem.day)}</td>
               </tr>
             ))}
           </tbody>

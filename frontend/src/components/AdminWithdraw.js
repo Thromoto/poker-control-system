@@ -160,131 +160,144 @@ const AdminWithdraw = () => {
   }, []);
 
   const formatDate = (date) => {
-    return format(new Date(date), "dd/MM/yyyy HH:mm:ss", {
+    return format(new Date(date), "dd/MM/yyyy HH:mm", {
       timeZone: "America/Sao_Paulo",
     });
   };
 
   return (
     <div className="body-admin-withdraw">
-      <h2>Admin Withdraw Requests</h2>
-      <div>
-        <label>
-          Player:
-          <select
-            value={selectedPlayer}
-            onChange={(e) => setSelectedPlayer(e.target.value)}
-          >
-            <option value="" disabled>
-              Selecione o jogador
-            </option>
-            {players.map((player) => (
-              <option key={player._id} value={player._id}>
-                {player.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Site:
-          <select
-            value={selectedSite}
-            disabled={
-              !selectedPlayer || selectedPlayer === "Selecione o jogador"
-            }
-            onChange={(e) => setSelectedSite(e.target.value)}
-          >
-            {siteOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Valor:
-          <input
-            type="text"
-            value={value}
-            disabled={!selectedSite || selectedSite === "Escolha seu site"}
-            onChange={(e) => setValue(e.target.value)}
-          />
-        </label>
-        <label>
-          Data:
-          <input
-            type="date"
-            value={day.toISOString().split("T")[0]}
-            disabled={!selectedSite || selectedSite === "Escolha seu site"}
-            onChange={(e) => setDay(new Date(e.target.value))}
-          />
-        </label>
-        <button
-          onClick={handleCreateWithdrawRequest}
-          disabled={!selectedSite || selectedSite === "Escolha seu site"}
-        >
-          Criar Solicitação
-        </button>
+      <h1>Withdraw Requests</h1>
+      <div className="container-admin-withdraw">
+        <div className="admin-withdraw-boxes">
+          <div className="add-report-form">
+            <label>
+              Player:
+              <select
+                value={selectedPlayer}
+                onChange={(e) => setSelectedPlayer(e.target.value)}
+              >
+                <option value="" disabled>
+                  Selecione o jogador
+                </option>
+                {players.map((player) => (
+                  <option key={player._id} value={player._id}>
+                    {player.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Site:
+              <select
+                value={selectedSite}
+                disabled={
+                  !selectedPlayer || selectedPlayer === "Selecione o jogador"
+                }
+                onChange={(e) => setSelectedSite(e.target.value)}
+              >
+                {siteOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Valor:
+              <input
+                type="text"
+                value={value}
+                disabled={!selectedSite || selectedSite === "Escolha seu site"}
+                onChange={(e) => setValue(e.target.value)}
+              />
+            </label>
+            <label>
+              Data:
+              <input
+                type="date"
+                value={day.toISOString().split("T")[0]}
+                disabled={!selectedSite || selectedSite === "Escolha seu site"}
+                onChange={(e) => setDay(new Date(e.target.value))}
+              />
+            </label>
+            <button
+              className="button-control"
+              onClick={handleCreateWithdrawRequest}
+              disabled={!selectedSite || selectedSite === "Escolha seu site"}
+            >
+              Criar Solicitação
+            </button>
+          </div>
+        </div>
+        <div className="admin-withdraw-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>Site</th>
+                <th>Value</th>
+                <th>Day</th>
+                <th>Status (Player)</th>
+                <th>Status (Admin)</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {withdrawRequests.map((request) => (
+                <tr key={request._id}>
+                  <td>{request.playerId.name}</td>
+                  <td>{request.site}</td>
+                  <td>$ {request.value}</td>
+                  <td>{formatDate(request.day)}</td>
+                  <td>{request.playerStatus}</td>
+                  <td>{request.status}</td>
+                  <td>
+                    {request.playerStatus === "NAO_SACADO" && (
+                      <>
+                        <button
+                          className="button-withdraw-edit"
+                          onClick={() =>
+                            handlePlayerUpdateStatus(request._id, "SACADO")
+                          }
+                        >
+                          Player Sacado
+                        </button>
+                      </>
+                    )}
+                    {request.status === "PENDING" && (
+                      <>
+                        <button
+                          className="button-withdraw-edit"
+                          onClick={() =>
+                            handleUpdateStatus(request._id, "APPROVED")
+                          }
+                        >
+                          Approve
+                        </button>
+                        <button
+                          className="button-withdraw-edit"
+                          onClick={() =>
+                            handleUpdateStatus(request._id, "REJECTED")
+                          }
+                        >
+                          Reject
+                        </button>
+                      </>
+                    )}
+                    <button
+                      className="button-withdraw-edit"
+                      onClick={() => handleDeleteWithdraw(request._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Player</th>
-            <th>Site</th>
-            <th>Value</th>
-            <th>Day</th>
-            <th>Status (Player)</th>
-            <th>Status (Admin)</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {withdrawRequests.map((request) => (
-            <tr key={request._id}>
-              <td>{request.playerId.name}</td>
-              <td>{request.site}</td>
-              <td>{request.value}</td>
-              <td>{formatDate(request.day)}</td>
-              <td>{request.playerStatus}</td>
-              <td>{request.status}</td>
-              <td>
-                {request.playerStatus === "NAO_SACADO" && (
-                  <>
-                    <button
-                      onClick={() =>
-                        handlePlayerUpdateStatus(request._id, "SACADO")
-                      }
-                    >
-                      Player Sacado
-                    </button>
-                  </>
-                )}
-                {request.status === "PENDING" && (
-                  <>
-                    <button
-                      onClick={() =>
-                        handleUpdateStatus(request._id, "APPROVED")
-                      }
-                    >
-                      Approve
-                    </button>
-                    <button
-                      onClick={() =>
-                        handleUpdateStatus(request._id, "REJECTED")
-                      }
-                    >
-                      Reject
-                    </button>
-                  </>
-                )}
-                <button onClick={() => handleDeleteWithdraw(request._id)}>
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </div>
   );
 };

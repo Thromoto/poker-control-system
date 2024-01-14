@@ -64,7 +64,7 @@ const AdminPayments = () => {
   const formatDateTime = (dateTimeString) => {
     const formattedDate = format(
       new Date(dateTimeString),
-      "dd/MM/yyyy HH:mm:ss", // Use XXX para incluir o offset de fuso horário
+      "dd/MM/yyyy HH:mm", // Use XXX para incluir o offset de fuso horário
       { timeZone: "America/Sao_Paulo" } // Defina o fuso horário desejado
     );
     return formattedDate;

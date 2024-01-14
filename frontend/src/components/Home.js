@@ -150,7 +150,7 @@ const Home = () => {
         <tr>
           {Object.entries(user.sites).map(([siteName, siteValue]) => (
             <td key={siteName}>
-              {siteValue.lastFinalValue !== undefined
+              $ {siteValue.lastFinalValue !== undefined
                 ? siteValue.lastFinalValue
                 : "N/A"}
             </td>

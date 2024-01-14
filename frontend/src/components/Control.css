@@ -93,26 +93,26 @@
   align-items: center;
 }
 
-.report-table {
+.report-table-control {
   flex: 1;
   overflow-y: scroll; /* Adiciona barra de rolagem vertical quando necessário */
   margin-top: 20px;
   border-spacing: 0; /* Remove espaçamento entre as células da tabela */
-  max-height: 350px; /* Ajuste conforme necessário */
+  max-height: 340px; /* Ajuste conforme necessário */
 }
 
 /* Estilizando a barra de rolagem */
-.report-table::-webkit-scrollbar {
+.report-table-control::-webkit-scrollbar {
   width: 6px;
 }
 
-.report-table::-webkit-scrollbar-thumb {
+.report-table-control::-webkit-scrollbar-thumb {
   background-color: #1c1a2f; /* Cor preta para a barra de rolagem */
   border-radius: 10px;
   width: 6px;
 }
 
-.report-table::-webkit-scrollbar-track {
+.report-table-control::-webkit-scrollbar-track {
   background-color: #ffffff;
 }
 
@@ -176,34 +176,34 @@
 }
 
 /* Estilo para as tabelas de relatórios */
-.report-table {
+.report-table-control {
   width: 100%;
   margin-top: 20px;
   overflow-x: auto;
 }
 
-.report-table table {
+.report-table-control table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
 }
 
-.report-table th,
-.report-table td {
+.report-table-control th,
+.report-table-control td {
   border: 1px solid #ddd;
   padding: 12px;
   text-align: left;
 }
 
-.report-table th {
+.report-table-control th {
   background-color: #1c1a2f;
   color: #fff;
 }
 
-.report-table tbody tr:nth-child(even) {
+.report-table-control tbody tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-.report-table tbody tr:hover {
+.report-table-control tbody tr:hover {
   background-color: #ddd;
 }
