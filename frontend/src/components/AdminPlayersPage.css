@@ -1,8 +1,76 @@
 .body-admin-players {
-    background-color: #f4f4f4;
-    margin-left: 80px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  background-color: #ffffff;
+  margin-left: 80px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-admin-players {
+  display: flex;
+  background-color: #fff;
+  padding: 5px;
+  width: 80%;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.select-admin-players {
+  padding: 10px;
+  width: 250px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.h3-admin-players {
+  text-align: left;
+  color: #000000;
+  margin-top: 10px;
+}
+
+.table-admin-players {
+  width: 100%;
+  margin-top: 0px;
+  overflow-x: auto;
+  flex: 1;
+  overflow-y: scroll; /* Adiciona barra de rolagem vertical quando necessário */
+  border-spacing: 0; /* Remove espaçamento entre as células da tabela */
+  max-height: 300px; /* Ajuste conforme necessário */
+}
+
+.table-admin-players table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.table-admin-players th,
+.table-admin-players td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center
+}
+
+.table-admin-players th {
+  background-color: #1c1a2f;
+  color: #fff;
+}
+
+/* Estilizando a barra de rolagem */
+.table-admin-players::-webkit-scrollbar {
+  width: 6px;
+}
+
+.table-admin-players::-webkit-scrollbar-thumb {
+  background-color: #1c1a2f; /* Cor preta para a barra de rolagem */
+  border-radius: 10px;
+  width: 6px;
+}
+
+.table-admin-players::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
