@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { format } from "date-fns";
 
 import "./AdminPlayersPage.css";
 
 const AdminPlayersPage = () => {
   const [players, setPlayers] = useState([]);
-  const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [selectedPlayer, setSelectedPlayer] = useState("");
   const [reports, setReports] = useState([]);
   const [selectedPlayerName, setSelectedPlayerName] = useState("");
+  const [currentTable, setCurrentTable] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -54,15 +54,6 @@ const AdminPlayersPage = () => {
     return "N/A";
   };
 
-  const totalResult = () => {
-    return reports.reduce(
-      (acc, report) =>
-        acc +
-        parseFloat(calculateDifference(report.initialValue, report.finalValue)),
-      0
-    );
-  };
-
   const handlePlayerClick = (playerId) => {
     const selectedPlayer = players.find((player) => player._id === playerId);
     setSelectedPlayer(selectedPlayer?._id);
@@ -70,57 +61,100 @@ const AdminPlayersPage = () => {
     fetchPlayerReports(playerId);
   };
 
+  const renderTablesBySite = () => {
+    const uniqueSites = Array.from(
+      new Set(reports.map((report) => report.site))
+    );
+
+    return (
+      <div>
+        <div className="selectt">
+          <label>
+            {/* Escolha o site: */}
+            <select
+              value={currentTable}
+              onChange={(e) => setCurrentTable(e.target.value)}
+              className="select-control"
+            >
+              <option value="">Selecione um site</option>
+              {uniqueSites.map((site) => (
+                <option key={site} value={site}>
+                  {site}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        {currentTable && (
+          <div className="table-container">
+            <h3 className="h3-control">{`Reports for Site ${currentTable}`}</h3>
+            <div className="report-table-control">
+              <table className="table-control">
+                <thead>
+                  <tr>
+                    <th>Site</th>
+                    <th className="report-initial-value">Initial Value</th>
+                    <th className="report-final-value">Final Value</th>
+                    <th className="report-result">Resultado</th>
+                    <th className="report-day">Day</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reports
+                    .filter((report) => report.site === currentTable)
+                    .map((report) => (
+                      <tr key={report._id} className="report-row">
+                        <td>{report.site}</td>
+                        <td className="report-initial-value">
+                          $ {report.initialValue}
+                        </td>
+                        <td className="report-final-value">
+                          $ {report.finalValue}
+                        </td>
+                        <td className="report-result">
+                          ${" "}
+                          {calculateDifference(
+                            report.initialValue,
+                            report.finalValue
+                          )}
+                        </td>
+                        <td className="report-day">
+                          {new Date(report.day).toLocaleDateString()}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="body-admin-players">
-      <h2>Players Data (Admin)</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
+      <h1>Players Report</h1>
+      <label>
+        Player:
+        <select
+          value={selectedPlayer}
+          onChange={(e) => handlePlayerClick(e.target.value)}
+        >
+          <option key="" value="" disabled>
+            Selecione o jogador
+          </option>
           {players.map((player) => (
-            <tr key={player._id} onClick={() => handlePlayerClick(player._id)}>
-              <td>{player.name}</td>
-              <td>{player.email}</td>
-            </tr>
+            <option key={player._id} value={player._id}>
+              {player.name}
+            </option>
           ))}
-        </tbody>
-      </table>
-
+        </select>
+      </label>
       {selectedPlayer && (
         <div>
-          <h3>
-            Reports for {selectedPlayerName} - Total: {totalResult()}
-          </h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Day</th>
-                <th>Site</th>
-                <th>Initial Value</th>
-                <th>Final Value</th>
-                <th>Resultado</th>
-              </tr>
-            </thead>
-            <tbody>
-              {reports.map((report) => (
-                <tr key={report._id}>
-                  <td>{format(new Date(report.day), "dd/MM/yyyy")}</td>
-                  <td>{report.site}</td>
-                  <td>R$ {report.initialValue}</td>
-                  <td>R$ {report.finalValue}</td>
-                  <td>R$ {calculateDifference(
-                      report.initialValue,
-                      report.finalValue
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <h3 className="h3-control">{selectedPlayerName}</h3>
+          <div>{renderTablesBySite()}</div>
         </div>
       )}
     </div>
