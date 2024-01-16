@@ -36,6 +36,28 @@ export async function getAdmin(req, res) {
   }
 }
 
+// Rota para administrador excluir admin
+export async function deleteAdmin(req, res) {
+  try {
+    if (req.user.role !== "admin") {
+      return res.status(403).send("Forbidden");
+    }
+
+    const adminId = req.params.adminId;
+
+    const admin = await AdminModel.findByIdAndDelete(adminId);
+
+    if (!admin) {
+      return res.status(404).json({ error: "Admin not found" });
+    }
+
+    res.status(200).json({ message: "Admin deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting player", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
 // Rota para administrador editar informações do jogador
 export async function editPlayer(req, res) {
   try {

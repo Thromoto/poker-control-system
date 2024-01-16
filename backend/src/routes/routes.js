@@ -2,6 +2,7 @@ import { Router } from "express";
 import authenticateToken from "../authenticateToken/auth.js";
 import getUser from "../controllers/UserController.js";
 import {
+  deleteAdmin,
   deletePlayer,
   editPlayer,
   getAdmin,
@@ -61,6 +62,7 @@ routes.get("/api/admin/players", authenticateToken, getAdminUsers);
 routes.get("/api/admin/admin", authenticateToken, getAdmin);
 routes.put("/api/admin/players/:playerId", authenticateToken, editPlayer);
 routes.delete("/api/admin/players/:playerId", authenticateToken, deletePlayer);
+routes.delete("/api/admin/admin/:adminId", authenticateToken, deleteAdmin);
 
 //BanckController
 routes.get("/api/bank", authenticateToken, getBanck);
