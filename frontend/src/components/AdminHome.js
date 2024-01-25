@@ -161,7 +161,7 @@ const AdminHome = () => {
           </tr>
         </tbody>
       </table>
-      {user && caixaSites()}
+      {caixaSites()}
     </div>
   );
 };

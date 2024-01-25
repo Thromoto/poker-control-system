@@ -135,6 +135,8 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   height: 40px;
+  width: 200px;
+  text-align: center;
 }
 
 .add-report-form select,

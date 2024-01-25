@@ -13,9 +13,14 @@ const AdminWithdraw = () => {
   const [players, setPlayers] = useState([]);
   const [siteOptions, setSiteOptions] = useState([
     "Escolha seu site",
-    "Chico",
-    "Party",
+    "888",
     "ACR",
+    "Bodog",
+    "Chico",
+    "Coin",
+    "IPoker",
+    "Party",
+    "YaPoker",
   ]);
 
   const fetchWithdrawRequests = async () => {

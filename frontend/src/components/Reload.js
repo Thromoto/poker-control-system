@@ -12,9 +12,14 @@ const Reload = () => {
   const [day, setDay] = useState(new Date());
   const [siteOptions, setSiteOptions] = useState([
     "Escolha seu site",
-    "Chico",
-    "Party",
+    "888",
     "ACR",
+    "Bodog",
+    "Chico",
+    "Coin",
+    "IPoker",
+    "Party",
+    "YaPoker",
   ]);
   const [reloadRequests, setReloadRequests] = useState([]);
 
