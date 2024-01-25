@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { format } from "date-fns-tz";
 
-import "./AdminCaixa.css";
+import "../../styles/AdminCaixa.css";
 import AdminTax from "./AdminTax";
 
 const AdminCaixa = () => {

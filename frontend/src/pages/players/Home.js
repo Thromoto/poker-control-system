@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "date-fns";
 
-import "./Home.css";
+import "../../styles/Home.css";
 
 const Home = () => {
   const [name, setName] = useState("");

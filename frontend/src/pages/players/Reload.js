@@ -4,7 +4,7 @@ import axios from "axios";
 import { format } from "date-fns-tz";
 
 import "react-datepicker/dist/react-datepicker.css";
-import "./Reload.css";
+import "../../styles/Reload.css";
 
 const Reload = () => {
   const [selectedSite, setSelectedSite] = useState("");

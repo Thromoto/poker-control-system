@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import "./AdminPlayersPage.css";
+import "../../styles/AdminPlayersPage.css";
 
 const AdminPlayersPage = () => {
   const [players, setPlayers] = useState([]);

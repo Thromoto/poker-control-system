@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "date-fns-tz";
 
-import "./AdminWithdraw.css";
+import "../../styles/AdminWithdraw.css";
 
 const AdminWithdraw = () => {
   const [withdrawRequests, setWithdrawRequests] = useState([]);

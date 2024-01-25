@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import axios from "axios";
 import { format } from "date-fns-tz";
 
-import "./Payments.css";
+import "../../styles/Payments.css";
 
 const Payments = () => {
   const [value, setValue] = useState("");

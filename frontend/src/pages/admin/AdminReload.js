@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "date-fns-tz";
 
-import "./AdminReload.css";
+import "../../styles/AdminReload.css";
 
 const AdminReload = () => {
   const [reloadRequests, setReloadRequests] = useState([]);

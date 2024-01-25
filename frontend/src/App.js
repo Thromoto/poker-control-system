@@ -1,24 +1,24 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Home from "./components/Home";
-import Control from "./components/Control";
-import AdminPlayersPage from "./components/AdminPlayersPage";
+import Login from "./pages/players/Login";
+import Register from "./pages/players/Register";
+import Home from "./pages/players/Home";
+import Control from "./pages/players/Control";
+import AdminPlayersPage from "./pages/admin/AdminPlayersPage";
 import NavBar from "./components/Navbar";
-import Reload from "./components/Reload";
-import Withdraw from "./components/Withdraw";
-import AdminReload from "./components/AdminReload";
+import Reload from "./pages/players/Reload";
+import Withdraw from "./pages/players/Withdraw";
+import AdminReload from "./pages/admin/AdminReload";
 import NavBarAdmin from "./components/NavBarAdmin";
-import AdminWithdraw from "./components/AdminWithdraw";
-import AdminPlayersInfo from "./components/AdminPlayersInfo";
-import AdminPayments from "./components/AdminPayments";
-import Payments from "./components/Payments";
-import AdminInfo from "./components/AdminInfo";
-import AdminHome from "./components/AdminHome";
-import AdminCaixa from "./components/AdminCaixa";
-import RequestResetPassword from "./components/RequestResetPassword";
-import ResetPassword from "./components/ResetPassword";
+import AdminWithdraw from "./pages/admin/AdminWithdraw";
+import AdminPlayersInfo from "./pages/admin/AdminPlayersInfo";
+import AdminPayments from "./pages/admin/AdminPayments";
+import Payments from "./pages/players//Payments";
+import AdminInfo from "./pages/admin/AdminInfo";
+import AdminHome from "./pages/admin/AdminHome";
+import AdminCaixa from "./pages/admin/AdminCaixa";
+import RequestResetPassword from "./pages/players/RequestResetPassword";
+import ResetPassword from "./pages/players/ResetPassword";
 
 function App() {
   return (

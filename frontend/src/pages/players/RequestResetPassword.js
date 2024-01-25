@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import "./RequestResetPassword.css";
+import "../../styles/RequestResetPassword.css";
 
-import home from "./home.png";
+import home from "../../images/home.png";
 
 const RequestResetPassword = () => {
   const [email, setEmail] = useState("");

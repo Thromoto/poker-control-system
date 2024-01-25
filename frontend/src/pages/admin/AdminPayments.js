@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "date-fns-tz";
 
-import "./AdminPayments.css";
+import "../../styles/AdminPayments.css";
 
 const AdminPayments = () => {
   const [paymentRequests, setPaymentRequests] = useState([]);

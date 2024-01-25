@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
-import "./ResetPassword.css";
+import "../../styles/ResetPassword.css";
 
-import home from "./home.png";
+import home from "../../images/home.png";
 
 const ResetPassword = () => {
   const { token } = useParams();

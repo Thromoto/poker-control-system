@@ -3,7 +3,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import "./Control.css";
+import "../../styles/Control.css";
 
 const Control = () => {
   const [initialValue, setInitialValue] = useState("");

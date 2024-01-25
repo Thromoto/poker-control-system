@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import "./AdminHome.css";
+import "../../styles/AdminHome.css";
 
 const AdminHome = () => {
   const [withdraw, setWithdraw] = useState([]);
