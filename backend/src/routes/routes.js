@@ -51,6 +51,7 @@ import {
   updateAdminWithdrawStatus,
   updateWithdrawStatus,
 } from "../controllers/WithdrawController.js";
+import validateRegister from "../middlewares/validateRegister.js";
 
 const routes = Router();
 
@@ -71,7 +72,7 @@ routes.put("/api/bank/:id", authenticateToken, editBanck);
 
 //LoginController
 routes.post("/api/login", postLogin);
-routes.post("/api/register", postRegister);
+routes.post("/api/register", validateRegister, postRegister);
 routes.post("/api/register-admin", postRegisterAdmin);
 routes.post("/api/login-admin", loginAdmin);
 routes.post("/api/request-reset-password", requestReset);
