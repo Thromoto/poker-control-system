@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import "../../styles/Control.css";
@@ -65,7 +64,7 @@ const Control = () => {
       setInitialValue("");
       setFinalValue("");
       setSelectedSite("");
-
+      setDay(new Date());
       fetchReports();
     } catch (error) {
       console.error("Error saving report", error);
@@ -146,7 +145,8 @@ const Control = () => {
                           $ {report.finalValue}
                         </td>
                         <td className="report-result">
-                          $ {calculateDifference(
+                          ${" "}
+                          {calculateDifference(
                             report.initialValue,
                             report.finalValue
                           )}
@@ -187,12 +187,11 @@ const Control = () => {
             </label>
             <label>
               Day:
-              <DatePicker
-                selected={day}
-                onChange={(date) => setDay(date)}
-                dateFormat="dd/MM/yyyy"
+              <input
+                type="date"
+                value={day.toISOString().split("T")[0]}
+                onChange={(e) => setDay(new Date(e.target.value))}
                 disabled={!selectedSite || selectedSite === "Escolha seu site"}
-                className="date-picker"
               />
             </label>
             <div className="input-row">
@@ -223,7 +222,11 @@ const Control = () => {
                 />
               </label>
             </div>
-            <button className="button-control" onClick={handleSaveReport}>
+            <button
+              className="button-control"
+              onClick={handleSaveReport}
+              disabled={!finalValue}
+            >
               Save Report
             </button>
           </div>
