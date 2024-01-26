@@ -1,8 +1,31 @@
 .body-admin-home {
-    background-color: #f4f4f4;
-    margin-left: 80px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  margin-left: 80px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-admin-home {
+  padding: 15px;
+  width: 75%;
+}
+
+.h1-home-admin {
+  text-align: center;
+  color: #000000;
+}
+
+.h2-home-admin {
+  text-align: center;
+  color: #000000;
+  padding-top: 30px;
+}
+
+.h3-home-admin {
+  text-align: center;
+  color: #000000;
+  margin: 0;
+  padding: 5px;
+  padding-top: 30px;
+}

@@ -98,7 +98,7 @@ const AdminHome = () => {
       console.log("No user data");
       return null;
     }
-  
+
     const tableHeader = (
       <thead>
         <tr>
@@ -109,7 +109,7 @@ const AdminHome = () => {
         </tr>
       </thead>
     );
-  
+
     const tableBody = (
       <tbody>
         {user.map((userData) => (
@@ -127,10 +127,10 @@ const AdminHome = () => {
         ))}
       </tbody>
     );
-  
+
     return (
       <div className="div-home">
-        <h3 className="home-h3">Final Value for Each Site</h3>
+        <h3 className="h3-home-admin">Final Value for Each Site</h3>
         <div className="table-home">
           <table>
             {tableHeader}
@@ -143,25 +143,27 @@ const AdminHome = () => {
 
   return (
     <div className="body-admin-home">
-      <h1>Home - Construção</h1>
-      <h2>Controle de Entrada e Saída</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Withdraw</th>
-            <th>Reload</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>R$ {totalWithdraw.toFixed(2)}</td>
-            <td>R$ {totalReload.toFixed(2)}</td>
-            <td>R$ {totalWithdraw - totalReload}</td>
-          </tr>
-        </tbody>
-      </table>
-      {caixaSites()}
+      <div className="container-admin-home">
+        <h1 className="h1-home-admin">Home</h1>
+        <h2 className="h2-home-admin">Controle de Entrada e Saída</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Withdraw</th>
+              <th>Reload</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>R$ {totalWithdraw.toFixed(2)}</td>
+              <td>R$ {totalReload.toFixed(2)}</td>
+              <td>R$ {totalWithdraw - totalReload}</td>
+            </tr>
+          </tbody>
+        </table>
+        {caixaSites()}
+      </div>
     </div>
   );
 };
