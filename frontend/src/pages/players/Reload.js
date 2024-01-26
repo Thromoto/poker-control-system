@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import DatePicker from "react-datepicker";
 import axios from "axios";
 import { format } from "date-fns-tz";
 
-import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/Reload.css";
 
 const Reload = () => {

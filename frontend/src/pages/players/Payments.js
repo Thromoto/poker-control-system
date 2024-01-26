@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import DatePicker from "react-datepicker";
 import axios from "axios";
 import { format } from "date-fns-tz";
 
@@ -64,6 +63,7 @@ const Payments = () => {
         }
       );
       setValue("");
+      setDay(new Date());
       // Após enviar a solicitação, recarregar os pagamentos do jogador
       fetchPaymentRequests();
     } catch (error) {
@@ -92,15 +92,16 @@ const Payments = () => {
           </label>
           <label>
             Data:
-            <DatePicker
-              selected={day}
-              onChange={(date) => setDay(date)}
-              dateFormat="dd/MM/yyyy"
-              className="date-picker"
+            <input
+              type="date"
+              value={day.toISOString().split("T")[0]}
+              onChange={(e) => setDay(new Date(e.target.value))}
               disabled={!value}
             />
           </label>
-          <button onClick={handlePayment} disabled={!value}>Solicitar</button>
+          <button onClick={handlePayment} disabled={!value}>
+            Solicitar
+          </button>
         </div>
         <div className="payments-remumo">
           <h2>Resumo dos Pagamentos</h2>
