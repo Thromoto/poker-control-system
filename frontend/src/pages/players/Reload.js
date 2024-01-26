@@ -79,7 +79,7 @@ const Reload = () => {
       );
       setValue("");
       setSelectedSite("");
-
+      setDay(new Date());
       // Após enviar a solicitação, recarregar as recargas do jogador
       fetchReloadRequests();
     } catch (error) {
@@ -112,6 +112,15 @@ const Reload = () => {
             </select>
           </label>
           <label>
+            Data:
+            <input
+              type="date"
+              value={day.toISOString().split("T")[0]}
+              onChange={(e) => setDay(new Date(e.target.value))}
+              disabled={!selectedSite || selectedSite === "Escolha seu site"}
+            />
+          </label>
+          <label>
             Valor:
             <input
               type="text"
@@ -120,44 +129,35 @@ const Reload = () => {
               disabled={!selectedSite || selectedSite === "Escolha seu site"}
             />
           </label>
-          <label>
-            Data:
-            <DatePicker
-              selected={day}
-              onChange={(date) => setDay(date)}
-              dateFormat="dd/MM/yyyy"
-              disabled={!selectedSite || selectedSite === "Escolha seu site"}
-              className="date-picker"
-            />
-          </label>
-          <button onClick={handleReload}>Recarregar</button>
+          <button onClick={handleReload} disabled={!value}>
+            Recarregar
+          </button>
         </div>
         <div className="resumo-reload1">
           <h2>Resumo das Recargas</h2>
           <h4>Total: $ {totalReload()}</h4>
           <div className="resumo-reload">
             <table>
-            <thead>
-              <tr>
-                <th>Site</th>
-                <th>Valor</th>
-                <th>Data</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {reloadRequests.map((request) => (
-                <tr key={request._id}>
-                  <td>{request.site}</td>
-                  <td>$ {request.value}</td>
-                  <td>{formatDate(request.day)}</td>
-                  <td>{request.status}</td>
+              <thead>
+                <tr>
+                  <th>Site</th>
+                  <th>Valor</th>
+                  <th>Data</th>
+                  <th>Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {reloadRequests.map((request) => (
+                  <tr key={request._id}>
+                    <td>{request.site}</td>
+                    <td>$ {request.value}</td>
+                    <td>{formatDate(request.day)}</td>
+                    <td>{request.status}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          
         </div>
       </div>
     </div>
