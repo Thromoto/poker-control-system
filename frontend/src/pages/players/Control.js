@@ -148,7 +148,7 @@ const Control = () => {
                           {calculateDifference(
                             report.initialValue,
                             report.finalValue
-                          )}
+                          ).toFixed(2)}
                         </td>
                         <td className="report-day">
                           {new Date(report.day).toLocaleDateString()}

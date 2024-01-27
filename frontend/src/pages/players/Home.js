@@ -101,7 +101,7 @@ const Home = () => {
                       {calculateDifference(
                         report.initialValue,
                         report.finalValue
-                      )}
+                      ).toFixed(2)}
                     </td>
                     <td>{report.day}</td>
                   </tr>
