@@ -84,9 +84,9 @@ const AdminHome = () => {
         }
       );
 
-      console.log("User response:", response.data);
+      // console.log("User response:", response.data);
       const updatedUser = response.data;
-      console.log(response.data);
+      // console.log(response.data);
       setUser(updatedUser);
     } catch (error) {
       console.error("Error fetching user data", error);
@@ -95,7 +95,7 @@ const AdminHome = () => {
 
   const caixaSites = () => {
     if (!user || !Array.isArray(user) || user.length === 0) {
-      console.log("No user data");
+      // console.log("No user data");
       return null;
     }
 

@@ -15,7 +15,7 @@ const Home = () => {
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem("token");
-      console.log("Token do localStorage:", token);
+      // console.log("Token do localStorage:", token);
 
       const response = await axios.get("http://localhost:3001/api/user", {
         headers: {
