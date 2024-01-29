@@ -8,6 +8,7 @@ const Reload = () => {
   const [selectedSite, setSelectedSite] = useState("");
   const [value, setValue] = useState("");
   const [day, setDay] = useState(new Date());
+  const [showWarning, setShowWarning] = useState(false);
   const [siteOptions, setSiteOptions] = useState([
     "Escolha seu site",
     "888",
@@ -61,6 +62,17 @@ const Reload = () => {
 
   const handleReload = async () => {
     try {
+      // Verifica se o valor é um número inteiro ou com ponto
+      if (!/^\d+(\.\d{1,2})?$/.test(value)) {
+        console.error(
+          "Valor inválido. Insira um número inteiro ou com até dois decimais."
+        );
+        setShowWarning(true);
+        return;
+      }
+
+      setShowWarning(false);
+
       const token = localStorage.getItem("token");
       await axios.post(
         "http://localhost:3001/api/reload",
@@ -123,9 +135,17 @@ const Reload = () => {
             <input
               type="text"
               value={value}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={(e) => {
+                setValue(e.target.value);
+                setShowWarning(false); // Esconde o aviso ao começar a digitar novamente
+              }}
               disabled={!selectedSite || selectedSite === "Escolha seu site"}
             />
+            {showWarning && (
+              <p style={{ color: "red", marginTop: "2px" }}>
+                *Insira um número (ex: 150 ou 150.45)
+              </p>
+            )}
           </label>
           <button onClick={handleReload} disabled={!value}>
             Recarregar
@@ -133,7 +153,7 @@ const Reload = () => {
         </div>
         <div className="resumo-reload1">
           <h2>Resumo das Recargas</h2>
-          <h4>Total: $ {totalReload()}</h4>
+          <h4>Total: $ {totalReload().toFixed(2)}</h4>
           <div className="resumo-reload">
             <table>
               <thead>

@@ -9,6 +9,7 @@ const Control = () => {
   const [selectedSite, setSelectedSite] = useState("");
   const [day, setDay] = useState(new Date());
   const [reports, setReports] = useState([]);
+  const [showWarning, setShowWarning] = useState(false);
   const [siteOptions, setSiteOptions] = useState([
     "Escolha seu site",
     "888",
@@ -39,6 +40,17 @@ const Control = () => {
 
   const handleSaveReport = async () => {
     try {
+      // Verifica se o valor é um número inteiro ou com ponto
+      if (!/^\d+(\.\d{1,2})?$/.test(initialValue || finalValue)) {
+        console.error(
+          "Valor inválido. Insira um número inteiro ou com até dois decimais."
+        );
+        setShowWarning(true);
+        return;
+      }
+
+      setShowWarning(false);
+
       const token = localStorage.getItem("token");
       const finalValueToSave = finalValue || findLastFinalValue();
 
@@ -138,10 +150,10 @@ const Control = () => {
                     .map((report) => (
                       <tr key={report._id} className="report-row">
                         <td className="report-initial-value">
-                          $ {report.initialValue}
+                          $ {report.initialValue.toFixed(2)}
                         </td>
                         <td className="report-final-value">
-                          $ {report.finalValue}
+                          $ {report.finalValue.toFixed(2)}
                         </td>
                         <td className="report-result">
                           ${" "}
@@ -200,7 +212,10 @@ const Control = () => {
                   className="input-control"
                   type="text"
                   value={initialValue}
-                  onChange={(e) => setInitialValue(parseFloat(e.target.value))}
+                  onChange={(e) => {
+                    setInitialValue(e.target.value);
+                    setShowWarning(false);
+                  }}
                   disabled={
                     !selectedSite ||
                     selectedSite === "Escolha seu site" ||
@@ -214,13 +229,21 @@ const Control = () => {
                   className="input-control"
                   type="text"
                   value={finalValue}
-                  onChange={(e) => setFinalValue(e.target.value)}
+                  onChange={(e) => {
+                    setFinalValue(e.target.value);
+                    setShowWarning(false);
+                  }}
                   disabled={
                     !selectedSite || selectedSite === "Escolha seu site"
                   }
                 />
               </label>
             </div>
+            {showWarning && (
+              <p style={{ color: "red", marginTop: "2px" }}>
+                *Insira um número (ex: 150 ou 150.45)
+              </p>
+            )}
             <button
               className="button-control"
               onClick={handleSaveReport}
