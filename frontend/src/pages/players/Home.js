@@ -80,7 +80,7 @@ const Home = () => {
       return (
         <div key={site} className="div-home">
           <h3 className="home-h3">{`Reports for Site ${site}`}</h3>
-          <h4>Total: $ {totalResult}</h4>
+          <h4>Total: $ {totalResult.toFixed(2)}</h4>
           <div className="table-home">
             <table>
               <thead>

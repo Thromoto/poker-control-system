@@ -8,6 +8,7 @@ const Payments = () => {
   const [value, setValue] = useState("");
   const [day, setDay] = useState(new Date());
   const [paymentRequests, setPaymentRequests] = useState([]);
+  const [showWarning, setShowWarning] = useState(false);
 
   useEffect(() => {
     // Carregar os pagamentos do jogador ao montar o componente
@@ -49,6 +50,17 @@ const Payments = () => {
 
   const handlePayment = async () => {
     try {
+      // Verifica se o valor é um número inteiro ou com ponto
+      if (!/^\d+(\.\d{1,2})?$/.test(value)) {
+        console.error(
+          "Valor inválido. Insira um número inteiro ou com até dois decimais."
+        );
+        setShowWarning(true);
+        return;
+      }
+
+      setShowWarning(false);
+
       const token = localStorage.getItem("token");
       await axios.post(
         "http://localhost:3001/api/payment",
@@ -87,9 +99,17 @@ const Payments = () => {
             <input
               type="text"
               value={value}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={(e) => {
+                setValue(e.target.value);
+                setShowWarning(false);
+              }}
             />
           </label>
+          {showWarning && (
+            <p style={{ color: "red", marginTop: "2px" }}>
+              *Insira um número (ex: 150 ou 150.45)
+            </p>
+          )}
           <label>
             Data:
             <input
@@ -105,7 +125,7 @@ const Payments = () => {
         </div>
         <div className="payments-remumo">
           <h2>Resumo dos Pagamentos</h2>
-          <h4>Total: $ {totalPayment()}</h4>
+          <h4>Total: $ {totalPayment().toFixed(2)}</h4>
           <div className="payments-resumo2">
             <table>
               <thead>
@@ -118,7 +138,7 @@ const Payments = () => {
               <tbody>
                 {paymentRequests.map((request) => (
                   <tr key={request._id}>
-                    <td>$ {request.value}</td>
+                    <td>$ {request.value.toFixed(2)}</td>
                     <td>{formatDate(request.day)}</td>
                     <td>{request.status}</td>
                   </tr>

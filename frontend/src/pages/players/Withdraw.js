@@ -80,7 +80,7 @@ const Withdraw = () => {
   return (
     <div className="body-withdraw">
       <h1>Withdraw Requests</h1>
-      <h4>Total: $ {totalWithdraw()}</h4>
+      <h4>Total: $ {totalWithdraw().toFixed(2)}</h4>
       <div className="container-withdraw">
         <div className="table-withdraw">
           <table>
@@ -98,7 +98,7 @@ const Withdraw = () => {
               {withdrawRequests.map((request) => (
                 <tr key={request._id}>
                   <td>{request.site}</td>
-                  <td>$ {request.value}</td>
+                  <td>$ {request.value.toFixed(2)}</td>
                   <td>{formatDate(request.day)}</td>
                   <td>{request.playerStatus}</td>
                   <td>{request.status}</td>
