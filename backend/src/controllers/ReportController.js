@@ -1,5 +1,6 @@
 import Report from "../models/ReportModel.js";
 import UserModel from "../models/UserModel.js";
+import moment from 'moment-timezone';
 
 // Rota para buscar relatórios
 export async function getReport(req, res) {
@@ -12,7 +13,7 @@ export async function getReport(req, res) {
   }
 }
 
-// Rota para salvar um novo relatório
+// Rota para salvar relatório
 export async function saveReport(req, res) {
   try {
     const { initialValue, finalValue, site, day } = req.body;
@@ -27,6 +28,17 @@ export async function saveReport(req, res) {
     if (!user.sites[site]) {
       // Se não existir, cria um objeto vazio para o site
       user.sites[site] = {};
+    }
+
+    // Verificar se o jogador já fez um relatório para este site hoje
+    const lastReport = await Report.findOne({
+      createdBy: req.user.userId,
+      site: site,
+      day: day
+    });
+
+    if (lastReport) {
+      return res.status(403).json({ error: "You have already reported results for this site today" });
     }
 
     // Obtém o último valor final do site a partir do lastFinalValue ou define como initialValue se não existir

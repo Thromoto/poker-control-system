@@ -91,11 +91,14 @@ export async function updateReload(req, res) {
         if (
           player.sites &&
           player.sites[site] &&
-          player.sites[site].lastFinalValue
+          player.sites[site].lastFinalValue !== undefined
         ) {
-          // Subtrai o valor aprovado do lastFinalValue do site correspondente
-          player.sites[site].lastFinalValue += approvedValue;
-
+          if (player.sites[site].lastFinalValue >= 0) {
+            player.sites[site].lastFinalValue += approvedValue;
+          } else {
+            player.sites[site].lastFinalValue = approvedValue; // Definir o valor inicial se for menor que 0
+          }
+        
           await player.save();
         }
       }

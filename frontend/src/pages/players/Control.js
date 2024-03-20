@@ -206,7 +206,7 @@ const Control = () => {
               />
             </label>
             <div className="input-row">
-              <label>
+              {/* <label>
                 Initial Value:
                 <input
                   className="input-control"
@@ -222,7 +222,7 @@ const Control = () => {
                     findLastFinalValue() !== null
                   }
                 />
-              </label>
+              </label> */}
               <label>
                 Final Value:
                 <input
