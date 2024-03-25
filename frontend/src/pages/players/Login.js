@@ -19,8 +19,8 @@ const Login = () => {
       // Escolha a URL da API com base no papel/role
       const apiUrl =
         role === "admin"
-          ? "http://localhost:3001/api/login-admin"
-          : "http://localhost:3001/api/login";
+          ? "poker-control-system.vercel.app/api/login-admin"
+          : "poker-control-system.vercel.app/api/login";
 
       // Lógica de autenticação com a API
       const response = await axios.post(apiUrl, { email, password });
