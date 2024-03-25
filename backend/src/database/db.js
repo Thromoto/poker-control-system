@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import 'dotenv/config';
 
-const db = mongoose.connect("mongodb+srv://thiomoto:kgrALDlfrjgjlyRl@thro.ulm8lpp.mongodb.net/?retryWrites=true&w=majority&appName=thro", {
+const db = mongoose.connect(process.env.MONGO_DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
